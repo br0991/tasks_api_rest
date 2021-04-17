@@ -1,31 +1,21 @@
-package br.testes_assured_rest_suits;
-import org.junit.BeforeClass;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
-
+package br.testes_assured_rest_configs;
 import br.testes_assured_rest_core.BaseTest;
-import br.testes_assured_rest_rotas.HomeTest;
-import br.testes_assured_rest_rotas.TaskTest;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
-@RunWith(Suite.class)
-@SuiteClasses({
 
-	HomeTest.class,
-	TaskTest.class
-})
+public class ConfigBase implements BaseTest {
 
-public class SuitTest implements BaseTest {
-
+	public ConfigBase(){
+		
+		setup();
+	}
 	private static RequestSpecification requestSpec;
 	private static ResponseSpecification responseSpec;
 
-	@BeforeClass
 	public static void setup() {
 
 		RequestSpecBuilder request = new RequestSpecBuilder();
@@ -44,7 +34,7 @@ public class SuitTest implements BaseTest {
 	}
 
 	public static void setRequestSpec(RequestSpecification requestSpec) {
-		SuitTest.requestSpec = requestSpec;
+		ConfigBase.requestSpec = requestSpec;
 	}
 
 	public static ResponseSpecification getResponseSpec() {
@@ -52,6 +42,6 @@ public class SuitTest implements BaseTest {
 	}
 
 	public static void setResponseSpec(ResponseSpecification responseSpec) {
-		SuitTest.responseSpec = responseSpec;
+		ConfigBase.responseSpec = responseSpec;
 	}
 }
